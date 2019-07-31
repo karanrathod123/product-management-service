@@ -23,6 +23,6 @@ public class Product {
 
 	private String manufacturedBy;
 
-	private String productVersion;
+	private Double productVersion;
 
 }
