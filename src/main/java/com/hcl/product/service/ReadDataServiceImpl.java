@@ -71,7 +71,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 
 		List<Product> updatedProductList = new ArrayList<Product>();
 		for (Product p : productList) {
-			Product product = productRepository.findByProductId(p.getProductId());
+			Product product = productRepository.findLatestProduct(p.getProductId());
 			if (product != null) {
 				p.setProductVersion(0.1);
 				if (!product.getManufacturedBy().equalsIgnoreCase(p.getManufacturedBy())
