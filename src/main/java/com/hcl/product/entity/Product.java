@@ -21,7 +21,7 @@ public class Product {
 
 	private Integer quantity;
 
-	private String mfgBy;
+	private String manufacturedBy;
 
 	private String productVersion;
 
