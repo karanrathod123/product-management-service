@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hcl.product.dto.ResponseData;
 import com.hcl.product.entity.Product;
 import com.hcl.product.service.ProductService;
 
@@ -19,11 +18,11 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
-	
+
 	@GetMapping("/getAll")
 	public ResponseEntity<Object> getAllProduct() {
-		List<Product> productList=productService.getAllProduct();
-		if(productList.isEmpty()) {
+		List<Product> productList = productService.getAllProduct();
+		if (productList.isEmpty()) {
 			return new ResponseEntity<>("No Products Available", HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<>(productList, HttpStatus.OK);
