@@ -74,15 +74,14 @@ public class ReadDataServiceImpl implements ReadDataService {
 		for (Product p : productList) {
 			Product product = productRepository.findLatestProduct(p.getProductId());
 			if (product != null) {
-				p.setProductVersion(0.1);
+				p.setProductVersion(product.getProductVersion());
 				if (!product.getManufacturedBy().equalsIgnoreCase(p.getManufacturedBy())
 						|| !product.getQuantity().equals(p.getQuantity())) {
-					p.setProductVersion(
-							Double.parseDouble(new DecimalFormat("#.#").format(product.getProductVersion() + p.getProductVersion())));
+					p.setProductVersion(product.getProductVersion() + 1.0);
 					productRepository.save(p);
 				}
 			} else {
-				p.setProductVersion(0.1);
+				p.setProductVersion(1.0);
 				productRepository.save(p);
 			}
 			updatedProductList.add(p);
