@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.product.dto.ResponseData;
 import com.hcl.product.entity.Product;
+import com.hcl.product.exception.InvalidInputException;
 import com.hcl.product.service.AllProductServiceImpl;
 import com.hcl.product.service.ProductService;
 import com.hcl.product.service.PublisherService;
@@ -46,7 +47,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/read/{fileName}")
-	public ResponseEntity<Object> readData(@PathVariable("fileName") String filePath) {
+	public ResponseEntity<Object> readData(@PathVariable("fileName") String filePath) throws InvalidInputException {
 		ResponseData responseData = readDataService.readData(filePath);
 		return new ResponseEntity<>(responseData.getData(), responseData.getHttpStatus());
 	}
