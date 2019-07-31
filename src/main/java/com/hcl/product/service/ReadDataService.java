@@ -1,4 +1,4 @@
-package com.hcl.product;
+package com.hcl.product.service;
 
 import com.hcl.product.dto.ResponseData;
 
