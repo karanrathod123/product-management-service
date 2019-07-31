@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.hcl.product.dto.ResponseData;
 import com.hcl.product.entity.Product;
+import com.hcl.product.exception.InvalidInputException;
 import com.hcl.product.repository.ProductRepository;
 
 @Service
@@ -24,7 +25,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 	private ProductRepository productRepository;
 
 	@Override
-	public ResponseData readData(String filePath) {
+	public ResponseData readData(String filePath) throws InvalidInputException {
 
 		List<Product> products = saveDatetoDatabase(readDataFromFile(filePath));
 		ResponseData responseData = new ResponseData();
@@ -35,7 +36,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 		return responseData;
 	}
 
-	private List<Product> readDataFromFile(String filePath) {
+	private List<Product> readDataFromFile(String filePath) throws InvalidInputException {
 
 		List<Product> products = new ArrayList<>();
 		try {
@@ -52,7 +53,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 				Product product = new Product();
 				Row row = rowIterator.next();
 
-				product.setProductId(new Double(row.getCell(0).getNumericCellValue()).longValue());
+				product.setProductId((long)row.getCell(0).getNumericCellValue());
 				product.setProductName(row.getCell(1).getStringCellValue());
 				product.setQuantity((int) row.getCell(2).getNumericCellValue());
 				product.setManufacturedBy(row.getCell(3).getStringCellValue());
@@ -61,6 +62,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 			}
 			file.close();
 		} catch (IOException e) {
+			throw new InvalidInputException("Invalid File");
 		}
 		return products;
 	}

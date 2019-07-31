@@ -14,8 +14,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query(value = "SELECT * from productservice.product t1 WHERE t1.product_version = (SELECT max(product_version) FROM productservice.product t2 WHERE t2.product_id = t1.product_id)", nativeQuery = true)
 	public List<Product> getAllProduct();
 
-	// @Query(value = "select MAX(p.product_version) from Product p Where
-	// p.product_Id=:productId", nativeQuery = true)
 	@Query(value = "select * from product where product_id =:productId group by product_id", nativeQuery = true)
 	public Product findLatestProduct(Long productId);
 
