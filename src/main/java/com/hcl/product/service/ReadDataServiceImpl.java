@@ -52,7 +52,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 				Product product = new Product();
 				Row row = rowIterator.next();
 
-				product.setProductId(new Double(row.getCell(0).getNumericCellValue()).longValue());
+				product.setProductId((long)row.getCell(0).getNumericCellValue());
 				product.setProductName(row.getCell(1).getStringCellValue());
 				product.setQuantity((int) row.getCell(2).getNumericCellValue());
 				product.setManufacturedBy(row.getCell(3).getStringCellValue());
