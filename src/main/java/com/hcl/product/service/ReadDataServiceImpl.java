@@ -67,6 +67,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 		return products;
 	}
 
+	@Override
 	public List<Product> saveDatetoDatabase(List<Product> productList) {
 
 		List<Product> updatedProductList = new ArrayList<Product>();
@@ -75,7 +76,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 			if (product != null) {
 				p.setProductVersion(0.1);
 				if (!product.getManufacturedBy().equalsIgnoreCase(p.getManufacturedBy())
-						|| product.getQuantity() != p.getQuantity()) {
+						|| !product.getQuantity().equals(p.getQuantity())) {
 					p.setProductVersion(
 							Double.parseDouble(new DecimalFormat("#.#").format(product.getProductVersion() + p.getProductVersion())));
 					productRepository.save(p);
@@ -84,7 +85,6 @@ public class ReadDataServiceImpl implements ReadDataService {
 				p.setProductVersion(0.1);
 				productRepository.save(p);
 			}
-
 			updatedProductList.add(p);
 		}
 
