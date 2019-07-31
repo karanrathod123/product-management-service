@@ -13,6 +13,6 @@ public class ProductEvent implements Serializable {
 
 	private static final long serialVersionUID = -2182815586359587829L;
 	
-	List<Product> productList = new ArrayList<Product>();
+	private List<Product> productList = new ArrayList<>();
 
 }

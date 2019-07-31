@@ -2,7 +2,6 @@ package com.hcl.product.service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -38,7 +37,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 
 	private List<Product> readDataFromFile(String filePath) {
 
-		List<Product> products = new ArrayList<Product>();
+		List<Product> products = new ArrayList<>();
 		try {
 
 			FileInputStream file = new FileInputStream(getClass().getClassLoader().getResource(filePath).getFile());
@@ -62,7 +61,6 @@ public class ReadDataServiceImpl implements ReadDataService {
 			}
 			file.close();
 		} catch (IOException e) {
-			// TODO: handle exception
 		}
 		return products;
 	}
@@ -70,7 +68,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 	@Override
 	public List<Product> saveDatetoDatabase(List<Product> productList) {
 
-		List<Product> updatedProductList = new ArrayList<Product>();
+		List<Product> updatedProductList = new ArrayList<>();
 		for (Product p : productList) {
 			Product product = productRepository.findLatestProduct(p.getProductId());
 			if (product != null) {

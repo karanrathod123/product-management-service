@@ -17,7 +17,7 @@ public class AllProducts {
 	@GetMapping("/product/getall")
 	public ResponseEntity<Object> getAllProduct(Long productId)
 	{
-		return new ResponseEntity<Object>(allProductServiceImpl.getAllProduct(productId),HttpStatus.OK);
+		return new ResponseEntity<>(allProductServiceImpl.getAllProduct(productId),HttpStatus.OK);
 	}
 	
 }

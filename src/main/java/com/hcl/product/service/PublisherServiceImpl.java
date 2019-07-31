@@ -21,7 +21,7 @@ public class PublisherServiceImpl implements PublisherService {
 	@Override
 	public ResponseData publishEvent(List<Product> products) {
 		ResponseData response = new ResponseData();
-		if (ObjectUtils.isEmpty(products) || products.size() == 0) {
+		if (ObjectUtils.isEmpty(products) || products.isEmpty()) {
 			response.setHttpStatus(HttpStatus.BAD_REQUEST);
 			response.setMessage("Event should not be empty");
 			return response;
